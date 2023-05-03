@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css.css">
+    <title>Number Guessing Game</title>
+    <meta charset="UTF-8">
+  </head>
+  <body background="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAIIASQMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABQYDBAcBAv/EADEQAAIABAQDBQcFAAAAAAAAAAABAgMEEQUUIWESMVEGExVBgUJSoaKxweFDVGORkv/EABgBAQEBAQEAAAAAAAAAAAAAAAAEAwIF/8QAHREBAAICAwEBAAAAAAAAAAAAAAECAxESITEyE//aAAwDAQACEQMRAD8AueX2LF2cg4KGNfyt/BGKVh8cx8rQ9WSlNTwU0rggu9btvqU3vuNJKU1O2YAGTVpY3DxYNXQ9aeNfKzlmT2Or4kuLDqqHrKiXwKNltijBOolPmjuEDk9hk9ieyuxH4p3sm0Eq0PEruK2pRE7Tz1CIq3IpIbzXeLygh1bI7xNftX/v8GzOpW227tvm2YMpsaRDPlLvAAPLeoAADFVripZy6wP6Fcy2xaDXm0suN3hXC/qd0txZ3rtX8tsRmLUl5kGns/ctcVNwvVGlXUnFFC7eRtW/bG9OlLnUexr5N9C2R0Di8rLqY/Dl1NubH85XEAED0AAAAAAMccqGLyMgBMNKbI2MGXXQk2r8zzu4dzuLuJq+gAcOwAAAAAAAAAAAAAAAAAAAAAAAAHMezvbWvoFDIxVRVlOtFM/Vh9fa9ddzoeG4lR4nIU6hnwzYPNLRwvo1zR3alq+uKZIt42wAcOwAAAAAAAHH8lsWfsDI7rEql25yLfMjXdKkruyRL9loYZVbOfWX90WZJ3SUeONWhageJp8j0jWAAAAAAAAOeKbFNi4o3clsGi7ubHF5OG1yBpZkOjb9CXp6lWSWhbbzSGvu1mlT9zagmKIr8ip3N+TUbk9qKK3SoPFyPTJsAAADBW1GWkOZZOzS1I3xaL3l/R1FZnxzN4hz6nb01ZKUzegBZKKElI5o35PIA4lrVZFyR6ASKgAARnaLTDIre/CVW76sAoxfKfL9P//Z">
+    <b><I><u><h1>Number Guessing Game</u></h1>
+    <p>Enter a number between 1 and 100:</p></I></b>
+    <input type="number" id="userInput">
+    <button onclick="startGame()">Start Game</button>
+    <p id="result"></p>
+    <script>
+        let answer;
+        let attemptsLeft = 5;
+
+        function startGame() {
+          const userInput = document.getElementById("userInput").value;
+
+          if (userInput < 1 || userInput > 100) {
+            document.getElementById("result").innerHTML = "Please enter a number between 1 and 100.";
+           return;
+          }
+
+          answer = userInput;
+
+         attemptsLeft = 5;
+
+        guessNumber();
+      }
+
+      function guessNumber() {
+        const guess = Math.floor(Math.random() * 100) + 1;
+        attemptsLeft--;
+        document.getElementById("result").innerHTML += `Attempt ${5-attemptsLeft}: Computer guessed ${guess}.<br>`;
+        if (guess == answer) {
+          document.getElementById("result").innerHTML += "Computer guessed the number correctly. Computer wins!";
+        return;
+        }
+
+        if (attemptsLeft <= 0) {
+          document.getElementById("result").innerHTML += `Computer ran out of attempts. User wins! The answer was ${answer}.`;
+        return;
+        }
+        setTimeout(guessNumber, 1000);
+      }
+
+    </script>
+  </body>
+</html>
